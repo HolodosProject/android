@@ -5,10 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <view class="androidx.recyclerview.widget.RecyclerView"
-        android:id="@+id/userList"
+    <view
+        android:id="@+id/todoList"
+        class="androidx.recyclerview.widget.RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/user_item"
-        tools:itemCount="12"/>
+        android:paddingStart="10dip"
+        android:paddingEnd="10dip"
+        tools:itemCount="12"
+        tools:listitem="@layout/shop_item" />
 </FrameLayout>

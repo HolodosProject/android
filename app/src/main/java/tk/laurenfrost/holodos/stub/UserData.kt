@@ -1,6 +1,6 @@
 package tk.laurenfrost.holodos.stub
 
-import tk.laurenfrost.holodos.entity.User
+import tk.laurenfrost.holodos.room.entity.User
 
 object UserData {
 
