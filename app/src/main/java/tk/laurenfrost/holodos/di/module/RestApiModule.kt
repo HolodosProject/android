@@ -6,7 +6,8 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import tk.laurenfrost.holodos.service.UserService
+import tk.laurenfrost.holodos.service.BoardService
+import tk.laurenfrost.holodos.service.ItemService
 import javax.inject.Singleton
 
 
@@ -14,8 +15,14 @@ import javax.inject.Singleton
 class RestApiModule {
     @Singleton
     @Provides
-    fun userService(retrofit: Retrofit): UserService {
-        return retrofit.create<UserService>(UserService::class.java)
+    fun itemService(retrofit: Retrofit): ItemService {
+        return retrofit.create<ItemService>(ItemService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun boardService(retrofit: Retrofit): BoardService {
+        return retrofit.create<BoardService>(BoardService::class.java)
     }
 
     @Singleton
@@ -24,7 +31,7 @@ class RestApiModule {
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://jsonplaceholder.typicode.com/")
+            .baseUrl("http://192.168.0.111:8081/api/v1/")
             .addConverterFactory(gsonConverterFactory)
             .build()
     }

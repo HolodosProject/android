@@ -1,17 +1,15 @@
 package tk.laurenfrost.holodos.room
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import tk.laurenfrost.holodos.room.dao.BoardDao
-import tk.laurenfrost.holodos.room.dao.FoodDao
-import tk.laurenfrost.holodos.room.entity.Board
-import tk.laurenfrost.holodos.room.entity.Food
+import tk.laurenfrost.holodos.room.dao.ItemDao
+import tk.laurenfrost.holodos.domain.entity.Board
+import tk.laurenfrost.holodos.domain.entity.Item
 
-@Database(entities = [Food::class, Board::class], version = 1)
+@Database(entities = [Item::class, Board::class], version = 4)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun foodDao(): FoodDao
+    abstract fun itemDao(): ItemDao
     abstract fun boardDao(): BoardDao
 
 }

@@ -1,4 +1,4 @@
-package tk.laurenfrost.holodos.room.entity
+package tk.laurenfrost.holodos.domain.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,6 +7,5 @@ import androidx.room.PrimaryKey
 data class Board(
     @PrimaryKey
     val id: String,
-    val macAddress: String,
-    val quantity: Int
+    val macAddress: String
 )

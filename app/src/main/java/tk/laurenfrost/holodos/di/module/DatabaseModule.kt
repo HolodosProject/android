@@ -6,18 +6,16 @@ import dagger.Module
 import dagger.Provides
 import tk.laurenfrost.holodos.room.AppDatabase
 import tk.laurenfrost.holodos.room.dao.BoardDao
-import tk.laurenfrost.holodos.room.dao.FoodDao
+import tk.laurenfrost.holodos.room.dao.ItemDao
 import javax.inject.Singleton
 
 
-@Module(
-    includes = [ContextModule::class]
-)
-class DatabaseModule {
+@Module
+class DatabaseModule(private val context: Context) {
 
     @Singleton
     @Provides
-    fun provideDatabase(context: Context): AppDatabase {
+    fun provideDatabase(): AppDatabase {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
@@ -28,8 +26,8 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun providePersonDao(db: AppDatabase): FoodDao {
-        return db.foodDao()
+    fun providePersonDao(db: AppDatabase): ItemDao {
+        return db.itemDao()
     }
 
     @Singleton

@@ -1,7 +1,7 @@
 package tk.laurenfrost.holodos.room.dao
 
 import androidx.room.*
-import tk.laurenfrost.holodos.room.entity.Board
+import tk.laurenfrost.holodos.domain.entity.Board
 
 @Dao
 interface BoardDao {
