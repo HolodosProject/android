@@ -2,6 +2,7 @@ package tk.laurenfrost.holodos.service
 
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
@@ -18,5 +19,8 @@ interface ItemService {
     fun createItem(@Body item: ItemDTO): Call<ItemDTO>
 
     @PATCH("item/{itemId}")
-    fun updateItem(@Path("itemId") itemId: String, @Body item: ItemDTO)
+    fun updateItem(@Path("itemId") itemId: String, @Body item: ItemDTO): Call<ItemDTO>
+
+    @DELETE("item/{itemId}")
+    fun deleteItem(@Path("itemId") itemId: String): Call<Void>
 }

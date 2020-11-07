@@ -1,13 +1,15 @@
 package tk.laurenfrost.holodos.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import tk.laurenfrost.holodos.HolodosApplication
 import tk.laurenfrost.holodos.R
-import tk.laurenfrost.holodos.adapter.FoodAdapter
+import tk.laurenfrost.holodos.interfaces.OnItemClickListener
+import tk.laurenfrost.holodos.adapter.ItemsAdapter
+import tk.laurenfrost.holodos.domain.entity.Board
 import tk.laurenfrost.holodos.domain.entity.Item
 import tk.laurenfrost.holodos.repository.ItemRepository
 import tk.laurenfrost.holodos.room.AppDatabase
@@ -15,7 +17,7 @@ import tk.laurenfrost.holodos.viewmodel.ItemsViewModel
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     @Inject
     lateinit var itemsViewModel: ItemsViewModel;
@@ -32,19 +34,34 @@ class MainActivity : AppCompatActivity() {
 
         (application as HolodosApplication).applicationComponent.inject(this);
 
-        Log.i("BACK", "Pre create")
-        itemRepository.createItem(Item("", "foo", 1, "8561b959-0efb-4ba7-a7da-f6a6eade8610"))
-        Log.i("BACK", "Post create")
+        get.setOnClickListener {
+            itemsViewModel.refreshItems()
+        }
 
-//        Log.i("HAHA Database:", appDatabase.toString())
-//        val foodDao: FoodDao = appDatabase.foodDao();
-//        val food = Food(UUID.randomUUID().toString(), "Soup", 3, UUID.randomUUID().toString())
-//        Log.i("FOOD", food.toString())
-//
-//        Executor.IOThread(Runnable { foodDao.insertFood(food) })
+        create.setOnClickListener {
+            itemRepository.createItem(Item("", "foo", 1, "8561b959-0efb-4ba7-a7da-f6a6eade8610"))
+        }
 
-        val adapter = FoodAdapter()
+
+        val adapter = ItemsAdapter(this)
         todoList.layoutManager = LinearLayoutManager(this)
         todoList.adapter = adapter
+
+        itemsViewModel.getBoardItems(Board("8561b959-0efb-4ba7-a7da-f6a6eade8610"))
+            .observe(this, Observer { list ->
+                list?.let {
+                    adapter.refreshItems(it)
+                }
+            })
+
+//        itemsViewModel.changeBoard(Board("8561b959-0efb-4ba7-a7da-f6a6eade8610"))
+    }
+
+    override fun onItemEditClicked(item: Item) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onItemDeleteClicked(item: Item) {
+        TODO("Not yet implemented")
     }
 }

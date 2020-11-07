@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class Board(
     @PrimaryKey
     val id: String,
-    val macAddress: String
+    val macAddress: String? = null
 )

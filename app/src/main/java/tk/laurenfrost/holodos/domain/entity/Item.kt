@@ -9,6 +9,7 @@ import androidx.room.PrimaryKey
 //parentColumns = ["id"],
 //childColumns = ["boardId"]
 //)]
+
 @Entity
 data class Item(
     @PrimaryKey

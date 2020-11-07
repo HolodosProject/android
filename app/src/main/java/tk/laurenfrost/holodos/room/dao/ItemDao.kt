@@ -9,11 +9,17 @@ interface ItemDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertItem(item: Item)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertItems(items: List<Item>)
+
     @Update
     fun updateItem(item: Item)
 
     @Delete
     fun deleteItem(item: Item)
+
+    @Query("DELETE FROM Item WHERE boardId == :boardId")
+    fun deleteItemsByBoardId(boardId: String)
 
     @Query("SELECT * FROM Item WHERE boardId == :boardId")
     fun getItemsByBoardId(boardId: String): LiveData<List<Item>>

@@ -7,7 +7,7 @@ import tk.laurenfrost.holodos.room.dao.ItemDao
 import tk.laurenfrost.holodos.domain.entity.Board
 import tk.laurenfrost.holodos.domain.entity.Item
 
-@Database(entities = [Item::class, Board::class], version = 4)
+@Database(entities = [Item::class, Board::class], version = 6)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun itemDao(): ItemDao
     abstract fun boardDao(): BoardDao

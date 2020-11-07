@@ -31,7 +31,7 @@ class RestApiModule {
         gsonConverterFactory: GsonConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.0.111:8081/api/v1/")
+            .baseUrl("http://laurenfrost.tk:8081/api/v1/")
             .addConverterFactory(gsonConverterFactory)
             .build()
     }
