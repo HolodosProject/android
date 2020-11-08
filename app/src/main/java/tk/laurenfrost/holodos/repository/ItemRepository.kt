@@ -29,7 +29,7 @@ class ItemRepository @Inject constructor(
             override fun onResponse(call: Call<List<ItemDTO>>, response: Response<List<ItemDTO>>) {
                 val items: List<Item> = response.body()?.map { itemDTO ->
                     Item(
-                        itemDTO.id,
+                        itemDTO.id!!,
                         itemDTO.name,
                         itemDTO.quantity,
                         itemDTO.board.id
@@ -53,7 +53,7 @@ class ItemRepository @Inject constructor(
             .enqueue(object : Callback<ItemDTO> {
                 override fun onResponse(call: Call<ItemDTO>, response: Response<ItemDTO>) {
                     val body: ItemDTO = response.body()!!
-                    val item = Item(body.id, body.name, body.quantity, body.board.id)
+                    val item = Item(body.id!!, body.name, body.quantity, body.board.id)
                     Executor.IOThread(Runnable { itemDao.insertItem(item) })
                 }
 
@@ -71,7 +71,7 @@ class ItemRepository @Inject constructor(
         ).enqueue(object : Callback<ItemDTO> {
             override fun onResponse(call: Call<ItemDTO>, response: Response<ItemDTO>) {
                 val body: ItemDTO = response.body()!!
-                val item = Item(body.id, body.name, body.quantity, body.board.id)
+                val item = Item(body.id!!, body.name, body.quantity, body.board.id)
                 Executor.IOThread(Runnable { itemDao.updateItem(item) })
             }
 

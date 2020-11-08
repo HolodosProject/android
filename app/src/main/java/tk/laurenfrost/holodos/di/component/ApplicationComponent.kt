@@ -10,6 +10,7 @@ import tk.laurenfrost.holodos.di.module.RestApiModule
 import tk.laurenfrost.holodos.room.AppDatabase
 import tk.laurenfrost.holodos.service.BoardService
 import tk.laurenfrost.holodos.service.ItemService
+import tk.laurenfrost.holodos.view.BoardListActivity
 import javax.inject.Singleton
 
 @Singleton
@@ -21,6 +22,7 @@ interface ApplicationComponent {
     val appDatabase: AppDatabase
 
     fun inject(activity: MainActivity)
+    fun inject(activity: BoardListActivity)
     fun inject(application: HolodosApplication)
 }
 

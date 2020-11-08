@@ -10,7 +10,7 @@ import tk.laurenfrost.holodos.interfaces.OnItemClickListener
 import tk.laurenfrost.holodos.domain.entity.Item
 import java.util.ArrayList
 
-class ItemsAdapter(val itemClickListener: OnItemClickListener) :
+class ItemsAdapter(private val itemClickListener: OnItemClickListener) :
     RecyclerView.Adapter<ItemsAdapter.ItemHolder>() {
 
     private var item: List<Item> = ArrayList()
